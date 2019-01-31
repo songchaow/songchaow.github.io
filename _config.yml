@@ -54,6 +54,7 @@ defaults:
       comments: true
       share: true
       related: false
+      hidden: false
 
 category_archive:
   type: liquid
