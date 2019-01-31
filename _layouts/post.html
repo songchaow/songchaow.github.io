@@ -29,7 +29,12 @@ layout: default
       </time>
       {% if page.author %}
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
-      {% endif %}</p>
+      {% endif %}
+      {% if post.tags.size >0 %}
+        Tag{% if post.tags.size>1%}s{%endif%}:
+        {{ post.tags | sort | join: ", "}}
+      {% endif %}
+    </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">

@@ -18,36 +18,76 @@ email: songchaow@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
   a light-weight blog newly created
 # baseurl: "/~wscwdy" # the subpath of your site, e.g. /blog
-url: "http://blog.songchaow.cn" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: 
-github_username:  songchaow
+url: "https://www.songchaow.cn" # the base hostname & protocol for your site, e.g. http://example.com
+
+author:
+  name             : "songchaow"
+  avatar           : "/assets/images/kaguya-square.jpg"
+  bio              : "A candidate for software engineer, passionate for computer graphics(especially in rendering), and fond of music theory."
+  location         : "Hefei, Anhui, China"
+  email            : "songchaow@outlook.com"
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      # url: "https://your-website.com"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      # url: "https://twitter.com/"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      # url: "https://facebook.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/songchaow"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      # url: "https://instagram.com/"
+
 defaults:
   - scope:
-      path: "scores/junminlianhuan"
+      path: ""
+      type: posts
     values:
-      song_name: jmlh
-      image: true
-  - scope:
-      path: "scores/caolian"
-    values:
-      song_name: caolian
-  - scope:
-      path: "scores/qionghuaduwu"
-    values:
-      song_name: qhdw
-  - scope:
-      path: "scores/xuqu"
-    values:
-      song_name: xq
-  - scope:
-      path: "usso_lecture"
-    values:
-      id_name: usso
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: false
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+comments:
+  provider: "custom"
+  
 # Build settings
 markdown: kramdown
-theme: minima
+# theme: jekyll-theme-minimal
+remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin    : "default"
+paginate: 5
+paginate_path: /page:num/
 plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
   - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

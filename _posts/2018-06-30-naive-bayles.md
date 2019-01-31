@@ -1,7 +1,10 @@
 ---
-layout: post
+layout: single
 title: 对朴素贝叶斯(Naive Bayes)的一些理解
-tags: [math, CS, AI]
+tags:
+  - math
+  - CS
+  - AI
 ---
 
 
