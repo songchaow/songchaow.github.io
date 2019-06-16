@@ -36,7 +36,7 @@ gem 'jekyll-sitemap'
 
 gem 'jekyll-gist'
 
-gem 'jekyll-feed'
+# gem 'jekyll-feed'
 
 gem 'jekyll-data'
 
