@@ -1,0 +1,43 @@
+---
+title: 利用JavaScript实现问卷星问卷调查的刷票
+author: songchaow
+tags:
+  - web
+comments: []
+---
+<p>寒假做一个无聊的社会实践，在问卷星发了一篇问卷调查。然而推广力不从心，填的人太少。于是打算用脚本把人数刷多。摸索了一下午，成功了，并刷了几百张票（当然我刷几十张票之后就得酌情改一下答案，要不然几百张答案完全相同就太假了）：</p>
+<p><img class="alignnone wp-image-69 size-full" src="http://backend.songchaow.cn/wp-content/uploads/2017/05/result.png" alt="" width="964" height="672" /></p>
+<p>之后在网上搜索类似内容，发现关于在问卷星上刷票的讨论比较稀少（有倒是有，但是是几年前的了，可能不再适用）。</p>
+<p>本方法是用简单的几行javascript脚本（其实自己javascript也刚入门啦），虽然很low，但是简单易行，只需要一款内有开发人员工具（按F12打开）的浏览器就可以实现。最近又看到好多同学在各种群里发各种问卷，所以姑且写篇文章介绍下这个偷懒的办法。<br />
+首先要说明，本方法只适用于问卷设置里“防重复填写”的三项全未选中的问卷（如下图。以后会考虑如何绕开这些限制，现在是真没时间）：</p>
+<p><img class="alignnone size-full wp-image-70" src="http://backend.songchaow.cn/wp-content/uploads/2017/05/norepeat.png" alt="" width="295" height="67" /></p>
+<p>所以如果是你自己的问卷，当然要在设置里把这些勾给去掉咯。</p>
+<p>下面详细讲步骤：</p>
+<h1>1. 访问需要填写的问卷网页，填写好答案：</h1>
+<p>这里就以我那个无聊的问卷为例好了：</p>
+<p>https://sojump.com/jq/11955824.aspx</p>
+<p>先和以前一样正常地填写完。注意不能空题，要不然之后刷多少次也没效果。</p>
+<h1>2. 找到网页的js脚本</h1>
+<p>按F12打开开发人员工具，找到与“提交”动作有关的js脚本。以google浏览器为例，脚本是这个样子（为了方便修改，你还应该点一下左下角的“{}”按钮，这样能使代码更加漂亮的显示）：</p>
+<h1><img class="alignnone size-full wp-image-72" src="http://backend.songchaow.cn/wp-content/uploads/2017/05/jsview.png" alt="" width="1383" height="473" /></h1>
+<p>（这个网站有两个js脚本，你应当和图片比对一下，别选错了）</p>
+<h1>3. 替换第二步的js脚本</h1>
+<p>下载这个我修改过的脚本：<a href="http://backend.songchaow.cn/wp-content/uploads/2017/05/jqnew2_nojump.txt">jqnew2_nojump</a>，用它来替换第二步中的那个脚本文件的所有内容。具体操作当然是：全选下载的txt文件的所有内容，复制，全选第二步窗口里的所有内容，粘贴。</p>
+<p>第三步替换脚本主要是为了避免提交问卷后的跳转（观察一下修改过的脚本，你会发现我注释掉了其中一段用于跳转的代码）。大家应该都知道在问卷星填完问卷后会跳转到一个抽奖页面，那样你在前一个网页所填写的表单数据就全丢了，不能重复填写了。</p>
+<h1>4.在控制台写刷票脚本</h1>
+<p>其实现在你可以试一下点“提交”按钮。你会发现不会跳转到抽奖页面了。</p>
+<p>控制台在这里：</p>
+<p><img class="alignnone size-full wp-image-75" src="http://backend.songchaow.cn/wp-content/uploads/2017/05/console.png" alt="" width="903" height="469" /></p>
+<p>刷票脚本寥寥几行，其实就是循环n次的代码块：</p>
+<pre>var n=15;
+function loop()
+{
+ submit(1);
+ console.log("n= "+n);
+ if(n&gt;0)
+    {var t=setTimeout("loop()",50000);n--;}
+}</pre>
+<p>为了避免刷票过快而出现验证码，用setTimeout函数实现50秒（也就是代码里的50000ms）刷一次，你也可以试着减少间隔，试试不出现验证码的时间阈值是多少。</p>
+<p><strong>此处要注意，setTimeout仅使引号内的代码延时执行，而并未使setTimeout的下一条语句延时执行。为了实现暂停，图简便的我用了递归。当时只求达到目的，没有管啥优不优雅的问题。</strong></p>
+<p>该脚本中的submit(1)函数即为提交按钮所触发的函数。你可以在脚本里面找到它。</p>
+<p>好啦。总体来讲应该还算简单吧。刷票愉快！</p>
