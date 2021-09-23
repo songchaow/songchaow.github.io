@@ -6,6 +6,7 @@ header:
   caption: "Photo credit: https://movie.douban.com/subject/30331149/"
 tags:
   - music
+permalink: /2019/01/30/white-snake.html
 ---
 **注：本文中提到的所有歌曲都是链接，可以戳进去试听。**
 
